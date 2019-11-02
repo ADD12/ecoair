@@ -1,1 +1,1 @@
-# ecoair-ecodashnoard v0.1
+# ecoair-ecodashboard v0.1
