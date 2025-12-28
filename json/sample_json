@@ -1,0 +1,44 @@
+Sample SenML JSON Payload
+
+JSON
+
+
+[
+  {
+    "bn": "urn:dev:mac:0024befffe804ff1:",
+    "bt": 1735418000,
+    "n": "pm2.5",
+    "u": "ug/m3",
+    "v": 12.5
+  },
+  {
+    "n": "pm10",
+    "u": "ug/m3",
+    "v": 18.2
+  },
+  {
+    "n": "temperature",
+    "u": "Cel",
+    "v": 23.4
+  },
+  {
+    "n": "humidity",
+    "u": "%RH",
+    "v": 45.0
+  }
+]
+
+
+Breakdown of Fields
+SenML is designed to be compact. You define "Base" values in the first record, and they automatically apply to all subsequent records in the list.
+bn (Base Name): A unique identifier for the device (often a MAC address or URN). Because this is a "Base" field, it applies to every measurement in the array.
+bt (Base Time): The Unix Epoch timestamp (in seconds) when the measurement was taken.
+n (Name): The specific metric being measured (e.g., "pm2.5").
+u (Unit): The unit of measure. SenML uses standard unit symbols:
+ug/m3 = Micrograms per cubic meter
+Cel = Degrees Celsius
+%RH = Relative Humidity
+v (Value): The actual numeric reading.
+Why this helps your Eco Dashboard
+Bandwidth Efficiency: You don't have to repeat the Device ID (bn) or Timestamp (bt) for every single sensor reading (PM2.5, Temp, Humidity, etc.), which saves data on cellular/LoRaWAN connections.
+Self-Describing: The units (u) are included in the packet. Your dashboard doesn't need to "guess" if the temperature is in Celsius or Fahrenheit—the data explicitly says so.
